@@ -7,3 +7,6 @@ spring:
     url: jdbc:mysql://localhost:3306/demo_db?serverTimezone=UTC
     username: demo
     password: demo
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml

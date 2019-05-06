@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="io.simpolor.mybatis.repository.StudentRepository">
+<mapper namespace="io.simpolor.mybatis.mapper.StudentMapper">
 
     <select id="selectStudentTotalCount" resultType="int">
         SELECT count(*) 

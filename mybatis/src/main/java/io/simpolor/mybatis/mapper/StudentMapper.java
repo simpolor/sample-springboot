@@ -7,10 +7,16 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface StudentMapper {
 
-	int selectStudentCount();
-	
+	int selectStudentTotalCount();
+
 	Student selectStudent(int seq);
+
+	int insertStudent(Student student);
+
+	int updateStudent(Student student);
+
+	int deleteStudent(int seq);
 	
 	@Select("SELECT COUNT(*) FROM student")
-	int findAllCount();
+	int findByAllCount();
 }

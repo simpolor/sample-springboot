@@ -21,7 +21,7 @@ public class StringSplitTypeHandler implements TypeHandler<List<String>> {
     public void setParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType) throws SQLException {
         if (parameter != null) {
             ps.setString(i, parameter.stream().map(Object::toString)
-                .collect(Collectors.joining(", ")));
+                .collect(Collectors.joining(",")));
         }
     }
 

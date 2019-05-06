@@ -11,8 +11,8 @@ public class StudentRepository {
     @Autowired
     private SqlSession sqlSession;
 
-    public int selectStudentCount(){
-        return sqlSession.selectOne("selectStudentCount");
+    public int selectStudentTotalCount(){
+        return sqlSession.selectOne("selectStudentTotalCount");
     }
 
     public Student selectStudent(int seq){
@@ -20,10 +20,6 @@ public class StudentRepository {
     }
 
     public int insetStudent(Student student){
-        System.out.println("student.getName : "+student.getName());
-        System.out.println("student.getGrade : "+student.getGrade());
-        System.out.println("student.getAge : "+student.getAge());
-        System.out.println("student.getHobby : "+student.getHobby());
         return sqlSession.insert("insertStudent", student);
     }
 

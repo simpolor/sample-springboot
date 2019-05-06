@@ -1,0 +1,44 @@
+# 전체 카운트
+GET http://127.0.0.1:8081/mapper/student/totalcount
+
+###
+
+# 전체 카운트 ( findByAllCount )
+GET http://127.0.0.1:8081/mapper/student/findByAllCount
+
+###
+
+# Student 조회
+GET http://127.0.0.1:8081/mapper/student/4
+
+###
+
+# Student 등록
+POST http://127.0.0.1:8081/mapper/student
+Content-Type: application/json
+
+{
+  "name": "박석영",
+  "grade": 2,
+  "age": 18,
+  "hobby": ["축구"]
+}
+
+###
+
+# Student 수정
+PUT http://127.0.0.1:8081/mapper/student/4
+Content-Type: application/json
+
+{
+  "name": "박석영",
+  "grade": 2,
+  "age": 18,
+  "hobby": ["축구", "프로그래밍"]
+}
+###
+
+# Student 삭제
+DELETE http://127.0.0.1:8081/mapper/student/3
+
+###
