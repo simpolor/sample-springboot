@@ -31,7 +31,10 @@ public class StudentService {
     }
 
     public Student modifyStudent(Student student) {
-        return studentRepository.save(student);
+        if(studentRepository.findById(student.getSeq()).isPresent()){
+            return studentRepository.save(student);
+        }
+        return new Student();
     }
 
     public long deleteStudent(long seq) {
