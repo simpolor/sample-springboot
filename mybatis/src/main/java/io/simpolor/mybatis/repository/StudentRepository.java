@@ -5,6 +5,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class StudentRepository {
 
@@ -15,11 +17,15 @@ public class StudentRepository {
         return sqlSession.selectOne("selectStudentTotalCount");
     }
 
-    public Student selectStudent(int seq){
+    public List<Student> selectStudentList(){
+        return sqlSession.selectList("selectStudentList");
+    }
+
+    public Student selectStudent(long seq){
         return sqlSession.selectOne("selectStudent", seq);
     }
 
-    public int insetStudent(Student student){
+    public int insertStudent(Student student){
         return sqlSession.insert("insertStudent", student);
     }
 
@@ -27,7 +33,7 @@ public class StudentRepository {
         return sqlSession.update("updateStudent", student);
     }
 
-    public int deleteStudent(int seq){
+    public int deleteStudent(long seq){
         return sqlSession.delete("deleteStudent", seq);
     }
 }

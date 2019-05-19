@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Student {
 
-	private int seq;
+	private long seq;
 	private String name;
 	private int grade;
 	private int age;
 	private List<String> hobby;
 
-	public int getSeq() {
+	public long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(long seq) {
 		this.seq = seq;
 	}
 

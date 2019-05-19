@@ -1,6 +1,7 @@
 package io.simpolor.mybatis.service;
 
 import io.simpolor.mybatis.domain.Student;
+import io.simpolor.mybatis.mapper.StudentMapper;
 import io.simpolor.mybatis.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,42 +9,42 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class StudentMapperService {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentMapper studentMapper;
 
     public int getStudentTotalCount() {
-        return studentRepository.selectStudentTotalCount();
+        return studentMapper.selectStudentTotalCountMapper();
     }
 
     public List<Student> getStudentList() {
-        return studentRepository.selectStudentList();
+        return studentMapper.selectStudentListMapper();
     }
 
     public Student getStudent(long seq) {
-        if(studentRepository.selectStudent(seq) != null){
-            return studentRepository.selectStudent(seq);
+        if(studentMapper.selectStudentMapper(seq) != null){
+            return studentMapper.selectStudentMapper(seq);
         }
         return new Student();
     }
 
     public Student registerStudent(Student student) {
-        if(studentRepository.insertStudent(student) > 0){
+        if(studentMapper.insertStudentMapper(student) > 0){
             return student;
         }
         return new Student();
     }
 
     public Student modifyStudent(Student student) {
-        if(studentRepository.updateStudent(student) > 0){
+        if(studentMapper.updateStudentMapper(student) > 0){
             return student;
         }
         return new Student();
     }
 
     public long deleteStudent(long seq) {
-        studentRepository.deleteStudent(seq);
+        studentMapper.deleteStudentMapper(seq);
         return seq;
     }
 

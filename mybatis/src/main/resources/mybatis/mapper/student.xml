@@ -7,14 +7,19 @@
         SELECT count(*) 
           FROM student
     </select>
+
+    <select id="selectStudentList" resultType="student">
+        SELECT *
+          FROM student
+    </select>
     
-    <select id="selectStudent" parameterType="int" resultType="student">
+    <select id="selectStudent" parameterType="long" resultType="student">
         SELECT *
           FROM student
          WHERE seq = #{seq}
     </select>
 
-    <insert id="insertStudent" parameterType="student">
+    <insert id="insertStudent" parameterType="student" useGeneratedKeys="true" keyProperty="seq">
         INSERT INTO student ( name, grade, age, hobby )
              VALUES (
                       #{name}
@@ -33,7 +38,7 @@
          WHERE seq = #{seq}
     </update>
 
-    <delete id="deleteStudent" parameterType="int">
+    <delete id="deleteStudent" parameterType="long">
         DELETE FROM student
               WHERE seq = #{seq}
     </delete>

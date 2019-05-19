@@ -4,18 +4,22 @@ import io.simpolor.mybatis.domain.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface StudentMapper {
 
-	int selectStudentTotalCount();
+	int selectStudentTotalCountMapper();
 
-	Student selectStudent(int seq);
+	List<Student> selectStudentListMapper();
 
-	int insertStudent(Student student);
+	Student selectStudentMapper(long seq);
 
-	int updateStudent(Student student);
+	int insertStudentMapper(Student student);
 
-	int deleteStudent(int seq);
+	int updateStudentMapper(Student student);
+
+	int deleteStudentMapper(long seq);
 	
 	@Select("SELECT COUNT(*) FROM student")
 	int findByAllCount();

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequestMapping("/student")
 @RestController
 public class StudentController {
@@ -21,26 +23,32 @@ public class StudentController {
 		return studentService.getStudentTotalCount();
 	}
 
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public List<Student> studentList() {
+		return studentService.getStudentList();
+	}
+
 	@RequestMapping(value="/{seq}", method=RequestMethod.GET)
-	public Student studentView(@PathVariable int seq) {
+	public Student studentView(@PathVariable long seq) {
 		return studentService.getStudent(seq);
 	}
 
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public int studentRegister(@RequestBody Student student) {
+	public Student studentRegister(@RequestBody Student student) {
 		return studentService.registerStudent(student);
 	}
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.PUT)
-	public int studentModify(@PathVariable int seq,
+	public Student studentModify(@PathVariable int seq,
 							 @RequestBody Student student) {
 		student.setSeq(seq);
 		return studentService.modifyStudent(student);
 	}
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.DELETE)
-	public int studentDelete(@PathVariable int seq) {
+	public long studentDelete(@PathVariable long seq) {
 		return studentService.deleteStudent(seq);
+
 	}
 
 
