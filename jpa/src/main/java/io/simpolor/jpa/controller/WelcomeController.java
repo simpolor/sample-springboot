@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class WelcomeController {
 
-    @RequestMapping({"/", "/index"})
+    @RequestMapping({"/", "/index", "/welcome"})
     @ResponseBody
     public String home() {
         return "Springboot Sample JPA";
