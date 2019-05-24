@@ -1,6 +1,9 @@
-package io.simpolor.webmvc.controller;
+package io.simpolor.event.controller;
 
-import io.simpolor.webmvc.domain.Student;
+import io.simpolor.event.domain.Student;
+import io.simpolor.event.domain.StudentEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,6 +13,9 @@ import java.util.List;
 @RequestMapping("/student")
 @RestController
 public class StudentController {
+
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	@RequestMapping(value="/totalcount", method=RequestMethod.GET)
 	public int studentTotalCount() {
@@ -28,18 +34,24 @@ public class StudentController {
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.GET)
 	public Student studentView(@PathVariable long seq) {
-		return  new Student(seq, "단순색", 1, 17, Arrays.asList("축구"));
+		return new Student(seq, "단순색", 1, 17, Arrays.asList("축구"));
 	}
 
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public Student studentRegister(@RequestBody Student student) {
 		student.setSeq(1);
+
+		publisher.publishEvent(StudentEvent.of(student.getName(), student.getAge()));
+
 		return student;
 	}
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.PUT)
 	public Student studentModify(@PathVariable int seq, @RequestBody Student student) {
 		student.setSeq(seq);
+
+		publisher.publishEvent(StudentEvent.of(student.getName(), student.getAge()));
+
 		return student;
 	}
 

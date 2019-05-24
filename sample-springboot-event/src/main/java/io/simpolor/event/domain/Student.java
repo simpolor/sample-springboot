@@ -1,4 +1,4 @@
-package io.simpolor.webmvc.domain;
+package io.simpolor.event.domain;
 
 import java.util.List;
 
