@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
-    <artifactId>mybatis</artifactId>
+    <artifactId>sample-springboot-mybatis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>mybatis</name>
+    <name>sample-springboot-mybatis</name>
     <description>Mybatis project for Spring Boot</description>
 
     <properties>

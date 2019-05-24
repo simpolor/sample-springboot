@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
-    <artifactId>jpa</artifactId>
+    <artifactId>sample-springboot-jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>jpa</name>
+    <name>sample-springboot-jpa</name>
     <description>JPA project for Spring Boot</description>
 
     <properties>
