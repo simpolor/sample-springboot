@@ -1,0 +1,28 @@
+package io.simpolor.async.config;
+
+import org.springframework.context.annotation.*;
+import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+
+import java.util.concurrent.Executor;
+
+@Configuration
+@EnableAsync
+public class AsyncConfig extends AsyncConfigurerSupport {
+
+	@Override
+	public Executor getAsyncExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(2);
+		executor.setMaxPoolSize(10);
+		executor.setQueueCapacity(500);
+		executor.setThreadNamePrefix("simpolor-async-");
+		executor.initialize();
+
+		return executor;
+	}
+}
