@@ -1,6 +1,8 @@
 package io.simpolor.async.controller;
 
+import io.simpolor.async.component.StudentPrinter;
 import io.simpolor.async.domain.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -8,6 +10,9 @@ import java.util.*;
 @RequestMapping("/student")
 @RestController
 public class StudentController {
+
+	@Autowired
+	private StudentPrinter printer;
 
 	@RequestMapping(value="/totalcount", method=RequestMethod.GET)
 	public int studentTotalCount() {
@@ -32,12 +37,18 @@ public class StudentController {
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public Student studentRegister(@RequestBody Student student) {
 		student.setSeq(1);
+
+		printer.printWord(student.getName());
+
 		return student;
 	}
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.PUT)
 	public Student studentModify(@PathVariable int seq, @RequestBody Student student) {
 		student.setSeq(seq);
+
+		printer.printWord(student.getName());
+
 		return student;
 	}
 
