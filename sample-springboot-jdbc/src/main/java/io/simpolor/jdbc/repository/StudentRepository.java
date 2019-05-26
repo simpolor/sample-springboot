@@ -5,20 +5,12 @@ import io.simpolor.jdbc.repository.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -50,60 +42,29 @@ public class StudentRepository {
     }
 
     public long insertStudent(Student student){
-        //String query = "INSERT INTO student ( name, grade, age, hobby ) values ( ?, ?, ?, ? )";
-        //return jdbcTemplate.update(query, student.getName(), student.getGrade(), student.getAge(), this.stringJoiner(student.getHobby()));
 
         String query = "INSERT INTO student ( name, grade, age, hobby ) values ( ?, ?, ?, ? )";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection)
-                    throws SQLException {
-                PreparedStatement ps =
-                        connection.prepareStatement(query,
-                                Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, student.getName());
-                ps.setInt(2, student.getGrade());
-                ps.setInt(3, student.getAge());
-                ps.setString(4, stringJoiner(student.getHobby()));
 
-                return ps;
-            }
-        }, keyHolder);
-        long seq = keyHolder.getKey().longValue();
+        jdbcTemplate.update(
+                connection -> {
+                    PreparedStatement ps = connection.prepareStatement(query, new String[]{"seq"});
+                    ps.setString(1, student.getName());
+                    ps.setInt(2, student.getGrade());
+                    ps.setInt(3, student.getAge());
+                    ps.setString(4, stringJoiner(student.getHobby()));
+                    return ps;
+                }, keyHolder);
 
-        /*String query = "INSERT INTO student ( name, grade, age, hobby ) values ( ?, ?, ?, ? )";
-        SqlParameterSource fileParameters = new BeanPropertySqlParameterSource(student);
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(query, fileParameters, keyHolder);
-        return keyHolder.getKey().intValue();*/
+        Number key = keyHolder.getKey();
 
-        return seq;
-    }
-
-    public long insertStudent2(Student student){
-
-        String query = "INSERT INTO student ( name, grade, age, hobby ) values ( ?, ?, ?, ? )";
-
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("name", student.getName());
-        parameters.addValue("grade", student.getGrade());
-        parameters.addValue("age,", student.getAge());
-        parameters.addValue("hobby",  stringJoiner(student.getHobby()));
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        NamedParameterJdbcTemplate namedJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        int nb = namedJdbcTemplate.update(query, parameters, keyHolder, new String[]{"seq"});
-        long generatedId = keyHolder.getKey().longValue();
-        System.out.println("nb : "+nb);
-        System.out.println("generatedId : "+generatedId);
-
-        return generatedId;
+        return key.longValue();
     }
 
     public int updateStudent(Student student){
         String query = "UPDATE student SET name=?, grade=?, age=?, hobby=? WHERE seq = ?";
-        return jdbcTemplate.update("query", student.getName(), student.getGrade(), student.getAge(), this.stringJoiner(student.getHobby()));
+        return jdbcTemplate.update(query, student.getName(), student.getGrade(), student.getAge(), this.stringJoiner(student.getHobby()), student.getSeq());
     }
 
     public int deleteStudent(long seq){

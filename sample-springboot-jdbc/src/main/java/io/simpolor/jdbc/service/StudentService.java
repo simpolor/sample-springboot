@@ -29,7 +29,7 @@ public class StudentService {
     }
 
     public Student registerStudent(Student student) {
-        long result = studentRepository.insertStudent2(student);
+        long result = studentRepository.insertStudent(student);
         if(result > 0){
             student.setSeq(result);
             return student;

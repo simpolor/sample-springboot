@@ -9,7 +9,7 @@ GET http://127.0.0.1:8086/student/list
 ###
 
 # Student 조회
-GET http://127.0.0.1:8086/student/9
+GET http://127.0.0.1:8086/student/18
 
 ###
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 # Student 수정
-PUT http://127.0.0.1:8086/student/5
+PUT http://127.0.0.1:8086/student/18
 Content-Type: application/json
 
 {
@@ -39,6 +39,6 @@ Content-Type: application/json
 ###
 
 # Student 삭제
-DELETE http://127.0.0.1:8086/student/5
+DELETE http://127.0.0.1:8086/student/18
 
 ###
