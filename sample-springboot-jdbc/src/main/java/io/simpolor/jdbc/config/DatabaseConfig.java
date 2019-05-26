@@ -5,23 +5,32 @@ package io.simpolor.jdbc.config;
 @EnableTransactionManagement
 public class DatabaseConfig {
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sessionFactory.setTypeAliases(new Class[] {
-                Student.class
-        });
-        sessionFactory.setMapperLocations(resolver.getResources("classpath:/mybatis/mapper/*.xml"));
-        //sessionFactory.setConfigLocation(new ClassPathResource("mybatis/mybatis_config.xml"));
-        return sessionFactory.getObject();
+   @Bean
+    public DataSource dataSource(Environment environment) throws SQLException, ClassNotFoundException {
+        SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+        dataSource.setDriver(new com.mysql.jdbc.Driver());
+        //dataSource.setDriverClass(((Class<Driver>) Class.forName("com.mysql.jdbc.Driver")));
+        dataSource.setUrl("jdbc:mysql://localhost:3306/demo_db");
+        dataSource.setUsername("demo");
+        dataSource.setPassword("demo");
+
+        return dataSource;
     }
 
+	// @Bean
+	// public DataSource dataSource(){
+    //         return DataSourceBuilder
+    //         		.create()
+    //         		.driverClassName("com.mysql.jdbc.Driver")
+    //        		.url("jdbc:mysql://localhost:3306/demo_db")
+    //        		.username("demo")
+    //        		.password("demo")
+    //    		.build();
+    // }
+
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
-        final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
-        return sqlSessionTemplate;
+    public JdbcTemplate jdbcTemplate(@Qualifier("dataSource") final DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 
 }
