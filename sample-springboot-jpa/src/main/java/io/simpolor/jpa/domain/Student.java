@@ -14,6 +14,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long seq;
 
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	private int grade;
