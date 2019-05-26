@@ -1,20 +1,20 @@
 # Student 전체 카운트
-GET http://127.0.0.1:8081/student/totalcount
+GET http://127.0.0.1:8086/student/totalcount
 
 ###
 
 # Student 리스트
-GET http://127.0.0.1:8081/student/list
+GET http://127.0.0.1:8086/student/list
 
 ###
 
 # Student 조회
-GET http://127.0.0.1:8081/student/7
+GET http://127.0.0.1:8086/student/9
 
 ###
 
 # Student 등록
-POST http://127.0.0.1:8081/student
+POST http://127.0.0.1:8086/student
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 # Student 수정
-PUT http://127.0.0.1:8081/student/7
+PUT http://127.0.0.1:8086/student/5
 Content-Type: application/json
 
 {
@@ -39,6 +39,6 @@ Content-Type: application/json
 ###
 
 # Student 삭제
-DELETE http://127.0.0.1:8081/student/10
+DELETE http://127.0.0.1:8086/student/5
 
 ###

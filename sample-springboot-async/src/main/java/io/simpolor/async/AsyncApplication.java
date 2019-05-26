@@ -1,13 +1,13 @@
-package io.simpolor.event;
+package io.simpolor.async;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleSpringbootEventApplication {
+public class AsyncApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SampleSpringbootEventApplication.class, args);
+        SpringApplication.run(AsyncApplication.class, args);
     }
 
 }
