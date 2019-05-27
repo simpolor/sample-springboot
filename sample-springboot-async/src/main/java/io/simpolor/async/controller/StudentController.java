@@ -39,6 +39,7 @@ public class StudentController {
 		student.setSeq(1);
 
 		printer.printWord(student.getName());
+		printer.printText(student.getName());
 
 		return student;
 	}
@@ -48,6 +49,7 @@ public class StudentController {
 		student.setSeq(seq);
 
 		printer.printWord(student.getName());
+		printer.printText(student.getName());
 
 		return student;
 	}
