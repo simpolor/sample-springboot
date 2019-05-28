@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 # Student 수정
-PUT http://127.0.0.1:8087/student/12
+PUT http://127.0.0.1:8087/student/AWr8T3z8IfBOFUGuoagm
 Content-Type: application/json
 
 {

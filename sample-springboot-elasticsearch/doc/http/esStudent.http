@@ -9,7 +9,7 @@ GET http://127.0.0.1:8087/es/student/list
 ###
 
 # Student 조회
-GET http://127.0.0.1:8087/es/student/1
+GET http://127.0.0.1:8087/es/student/AWr8GYGVIfBOFUGuoagj
 
 ###
 
@@ -18,7 +18,6 @@ POST http://127.0.0.1:8087/es/student
 Content-Type: application/json
 
 {
-  "id": "1",
   "name": "박석영",
   "grade": 2,
   "age": 18,
@@ -28,7 +27,7 @@ Content-Type: application/json
 ###
 
 # Student 수정
-PUT http://127.0.0.1:8087/es/student/AWr3Jq0IIfBOFUGuoagF
+PUT http://127.0.0.1:8087/es/student/AWr8GYGVIfBOFUGuoagj
 Content-Type: application/json
 
 {
@@ -40,6 +39,6 @@ Content-Type: application/json
 ###
 
 # Student 삭제
-DELETE http://127.0.0.1:8087/es/student/AWr3BzLkIfBOFUGuoagB
+DELETE http://127.0.0.1:8087/es/student/AWr77z8wIfBOFUGuoagZ
 
 ###

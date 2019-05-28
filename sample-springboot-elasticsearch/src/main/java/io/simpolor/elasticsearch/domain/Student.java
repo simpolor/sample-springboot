@@ -1,6 +1,7 @@
 package io.simpolor.elasticsearch.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
@@ -17,6 +18,7 @@ public class Student {
 	// @Field(type = FieldType.Keyword, store = true)
 
 	@Id
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String id;
 
 	private String name;

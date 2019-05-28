@@ -5,6 +5,7 @@ import io.simpolor.elasticsearch.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,36 +15,32 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public long getStudentTotalCount() {
-        return studentRepository.selectStudentTotalCount();
+        return studentRepository.count();
     }
 
     public List<Student> getStudentList() {
-        return studentRepository.selectStudentList();
+        List<Student> list = new ArrayList<>();
+        studentRepository.findAll().forEach(list::add);
+        return list;
     }
 
     public Student getStudent(String id) {
-        if(studentRepository.selectStudent(id) != null){
-            return studentRepository.selectStudent(id);
-        }
-        return new Student();
+        return studentRepository.findById(id).orElse(new Student()) ;
     }
 
     public Student registerStudent(Student student) {
-        if(studentRepository.insertStudent(student) > 0){
-            return student;
-        }
-        return new Student();
+        return studentRepository.save(student);
     }
 
     public Student modifyStudent(Student student) {
-        if(studentRepository.updateStudent(student) > 0){
-            return student;
+        if(studentRepository.findById(student.getId()).isPresent()){
+            return studentRepository.update(student);
         }
         return new Student();
     }
 
     public String deleteStudent(String id) {
-        studentRepository.deleteStudent(id);
+        studentRepository.deleteById(id);
         return id;
     }
 

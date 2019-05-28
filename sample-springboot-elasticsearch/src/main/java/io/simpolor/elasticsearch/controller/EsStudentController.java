@@ -12,38 +12,38 @@ import java.util.List;
 public class EsStudentController {
 
 	@Autowired
-	private EsStudentService estudentService;
+	private EsStudentService esStudentService;
 
 	@RequestMapping(value="/totalcount", method=RequestMethod.GET)
 	public long studentTotalCount() {
-		return estudentService.getStudentTotalCount();
+		return esStudentService.getStudentTotalCount();
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public List<Student> studentList() {
-		return estudentService.getStudentList();
+		return esStudentService.getStudentList();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public Student studentView(@PathVariable String id) {
-		return estudentService.getStudent(id);
+		return esStudentService.getStudent(id);
 	}
 
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public Student studentRegister(@RequestBody Student student) {
-		return estudentService.registerStudent(student);
+		return esStudentService.registerStudent(student);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public Student studentModify(@PathVariable String id,
 							 @RequestBody Student student) {
 		student.setId(id);
-		return estudentService.modifyStudent(student);
+		return esStudentService.modifyStudent(student);
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{seq}", method=RequestMethod.DELETE)
 	public String studentDelete(@PathVariable String id) {
-		return estudentService.deleteStudent(id);
+		return esStudentService.deleteStudent(id);
 
 	}
 

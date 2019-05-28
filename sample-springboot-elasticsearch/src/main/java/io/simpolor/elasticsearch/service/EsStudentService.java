@@ -5,42 +5,47 @@ import io.simpolor.elasticsearch.repository.EsStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class EsStudentService {
 
     @Autowired
-    private EsStudentRepository studentRepository;
+    private EsStudentRepository esStudentRepository;
 
     public long getStudentTotalCount() {
-        return studentRepository.count();
+        return esStudentRepository.selectStudentTotalCount();
     }
 
     public List<Student> getStudentList() {
-        List<Student> list = new ArrayList<>();
-        studentRepository.findAll().forEach(list::add);
-        return list;
+        return esStudentRepository.selectStudentList();
     }
 
     public Student getStudent(String id) {
-        return studentRepository.findById(id).orElse(new Student()) ;
-    }
-
-    public Student registerStudent(Student student) {
-        return studentRepository.save(student);
-    }
-
-    public Student modifyStudent(Student student) {
-        if(studentRepository.findById(student.getId()).isPresent()){
-            return studentRepository.save(student);
+        if(esStudentRepository.selectStudent(id) != null){
+            return esStudentRepository.selectStudent(id);
         }
         return new Student();
     }
 
+    public Student registerStudent(Student student) {
+        esStudentRepository.insertStudent(student);
+        //if(esStudentRepository.insertStudent(student).){
+            return student;
+        //}
+       // return new Student();
+    }
+
+    public Student modifyStudent(Student student) {
+        esStudentRepository.updateStudent(student);
+       // if(esStudentRepository.updateStudent(student) > 0){
+            return student;
+        //}
+       // return new Student();
+    }
+
     public String deleteStudent(String id) {
-        studentRepository.deleteById(id);
+        esStudentRepository.deleteStudent(id);
         return id;
     }
 

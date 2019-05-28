@@ -41,7 +41,7 @@ public class StudentController {
 		return studentService.modifyStudent(student);
 	}
 
-	@RequestMapping(value="/{seq}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public String studentDelete(@PathVariable String id) {
 		return studentService.deleteStudent(id);
 
