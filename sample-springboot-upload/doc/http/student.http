@@ -1,0 +1,24 @@
+# Student 등록
+POST http://127.0.0.1:8087/student/upload
+Content-Type: application/json
+
+{
+  "name": "박석영",
+  "grade": 2,
+  "age": 18,
+  "hobby": ["축구"]
+}
+
+###
+
+# Student 수정
+PUT http://127.0.0.1:8087/student/7/profile/upload
+Content-Type: application/json
+
+{
+  "name": "박석영",
+  "grade": 2,
+  "age": 18,
+  "hobby": ["축구", "프로그래밍"]
+}
+###
