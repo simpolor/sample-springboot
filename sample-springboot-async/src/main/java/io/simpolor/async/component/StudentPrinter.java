@@ -14,4 +14,9 @@ public class StudentPrinter {
     public void printWord(String name){
         log.info(":::: StudentPrinter.printWord ::::"+name + defaultWord);
     }
+
+    @Async("threadPoolTaskExecutor")
+    public void printText(String name){
+        log.info(":::: StudentPrinter.printText ::::"+name + defaultWord);
+    }
 }
