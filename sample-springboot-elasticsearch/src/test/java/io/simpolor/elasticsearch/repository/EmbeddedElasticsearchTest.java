@@ -78,7 +78,7 @@ public class EmbeddedElasticsearchTest {
 
     @Test
     public void testEmbeddedElasticsearchGet(){
-        GetResponse getResponse = client.prepareGet("student","doc", "AWsH0Wwa2T8y2Ohwrjg-").get();
+        GetResponse getResponse = client.prepareGet("student","doc", "AWsasow94g7pYAvrZB2K").get();
         System.out.println("sourceAsString : "+getResponse.getSourceAsString());
     }
 }
