@@ -1,12 +1,13 @@
 # Student 등록
 POST http://127.0.0.1:8087/student/upload
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 {
   "name": "박석영",
   "grade": 2,
   "age": 18,
-  "hobby": ["축구"]
+  "hobby": ["축구"],
+  "profile": "C:\\Users\\Simpolor\\Pictures\\posts\\java\\2016-12-12T21.58_1.png"
 }
 
 ###
@@ -19,6 +20,55 @@ Content-Type: application/json
   "name": "박석영",
   "grade": 2,
   "age": 18,
-  "hobby": ["축구", "프로그래밍"]
+  "hobby": ["축구", "프로그래밍"],
+  "profile": "C:\\Users\\Simpolor\\Pictures\\posts\\java\\2016-12-12T21.58_1.png"
 }
+###
+
+POST http://localhost:8087/student/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="profile"; filename="C:\Users\Simpolor\Pictures\posts\java\2016-12-12T21.58_1.png"
+
+tom
+--WebAppBoundary--
+
+###
+
+POST /student/upload HTTP/1.1
+Host: 127.0.0.1:8087
+Content-Length: 394
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryLumpDpF3AwbRwRBn
+Referer: http://127.0.0.1:8087/
+
+------WebKitFormBoundaryUNZIuug9PIVmZWuw
+Content-Disposition: form-data; name="file"; filename="C:\Users\Simpolor\Pictures\posts\java\2016-12-12T21.58_1.png"
+Content-Type: image/png
+
+hello world
+------WebKitFormBoundaryUNZIuug9PIVmZWuw--
+
+###
+
+POST /student/upload HTTP/1.1
+Host: 127.0.0.1:8087
+Content-Length: 394
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryLumpDpF3AwbRwRBn
+Referer: http://172.16.100.128:5000/
+
+------WebKitFormBoundaryUNZIuug9PIVmZWuw
+Content-Disposition: form-data; name="username"
+
+Tom
+------WebKitFormBoundaryUNZIuug9PIVmZWuw
+Content-Disposition: form-data; name="password"
+
+passwd
+------WebKitFormBoundaryUNZIuug9PIVmZWuw
+Content-Disposition: form-data; name="file"; filename="myfile.txt"
+Content-Type: text/plain
+
+hello world
+
 ###
