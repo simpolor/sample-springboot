@@ -6,7 +6,6 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
-import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.*;
@@ -19,20 +18,22 @@ import java.util.concurrent.TimeUnit;
 
 public class EmbeddedElasticsearchTest {
 
-    EmbeddedElastic embeddedElastic = EmbeddedElastic.builder()
-            .withElasticVersion("5.6.3")
-            .withSetting(PopularProperties.HTTP_PORT, 9200)
-            .withSetting(PopularProperties.TRANSPORT_TCP_PORT, 9300)
-            .withSetting(PopularProperties.CLUSTER_NAME, "elasticsearch")
-            .withEsJavaOpts("-Xms128m -Xmx512m")
-            .withIndex("student")
-            .withStartTimeout(1, TimeUnit.MINUTES)
-            .build();
+    static EmbeddedElastic embeddedElastic;
 
-    TransportClient client;
+    static TransportClient client;
 
-    @Before
-    public void before() throws Exception{
+    @BeforeClass
+    public static void beforeClass() throws Exception{
+        embeddedElastic = EmbeddedElastic.builder()
+                .withElasticVersion("5.6.3")
+                .withSetting(PopularProperties.HTTP_PORT, 9200)
+                .withSetting(PopularProperties.TRANSPORT_TCP_PORT, 9300)
+                .withSetting(PopularProperties.CLUSTER_NAME, "elasticsearch")
+                .withEsJavaOpts("-Xms128m -Xmx512m")
+                .withIndex("student")
+                .withStartTimeout(1, TimeUnit.MINUTES)
+                .build();
+
         embeddedElastic.start();
 
         Settings settings = Settings.builder()
