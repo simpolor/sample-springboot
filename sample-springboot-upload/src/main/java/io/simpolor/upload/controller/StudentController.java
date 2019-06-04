@@ -10,10 +10,14 @@ public class StudentController {
 
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public Student studentProfileUpload(
-			@RequestBody Student student,
-			@RequestParam("profile_img") MultipartFile file
+			/*@RequestBody Student student,*/
+			@RequestPart("profile") MultipartFile profile
 	) {
-		return student;
+		//System.out.println("student : "+student.toString());
+		System.out.println("profile : "+profile.getOriginalFilename());
+		System.out.println("profile : "+profile.getName());
+		System.out.println("profile : "+profile);
+		return new Student();
 	}
 
 }
