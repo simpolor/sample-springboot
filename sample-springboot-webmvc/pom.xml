@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
-    <artifactId>sample-springboot-web</artifactId>
+    <artifactId>sample-springboot-webmvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>sample-springboot-web</name>
+    <name>sample-springboot-webmvc</name>
     <description>Webmvc project for Spring Boot</description>
 
     <properties>
