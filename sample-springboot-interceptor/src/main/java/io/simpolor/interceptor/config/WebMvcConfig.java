@@ -1,6 +1,6 @@
 package io.simpolor.interceptor.config;
 
-import io.simpolor.interceptor.config.interceptor.EnrolledStudentInterceptor;
+import io.simpolor.interceptor.interceptor.EnrolledStudentInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
