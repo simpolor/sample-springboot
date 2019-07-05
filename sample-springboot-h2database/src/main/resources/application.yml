@@ -6,7 +6,7 @@ spring:
   jpa:
     database: H2
     hibernate:
-      ddl-auto: create-drop # DB를 초기화하는 속성
+      ddl-auto: none # DB를 초기화하는 속성
       # none : 초기화하지 않음
       # create : 시작할 때 스키마를 지우고 다시 생성
       # create-drop : create와 동일하나, 종료될때 스키마 삭제 ( 내장 기본값 )

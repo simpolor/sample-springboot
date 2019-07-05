@@ -9,7 +9,7 @@ GET http://127.0.0.1:8090/student/list
 ###
 
 # Student 조회
-GET http://127.0.0.1:8090/student/18
+GET http://127.0.0.1:8090/student/1
 
 ###
 
