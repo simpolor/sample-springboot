@@ -5,13 +5,13 @@ import io.simpolor.batch.item.QueueItemReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.*;
 import org.springframework.batch.item.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 
 import javax.sql.DataSource;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Slf4j
@@ -59,15 +59,17 @@ public class SampleItemJobConfig {
     }*/
 
     @Bean
+    @StepScope
     public ItemReader<Student> itemReader() {
         List<Student> students = new ArrayList<>();
-        students.add(new Student(1L, "단순색", 1, 17));
-        students.add(new Student(2L, "김영희", 2, 18));
+        students.add(new Student(1L, "단순색", 1, 17, LocalDateTime.now()));
+        students.add(new Student(2L, "김영희", 2, 18, LocalDateTime.now()));
         log.info("> itemReader students size : {}", students.size());
         return new QueueItemReader<>(students);
     }
 
     @Bean
+    @StepScope
     public ItemProcessor<Student, Student> itemProcessor(){
         return student -> {
             student.setAge(27);

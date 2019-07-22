@@ -18,11 +18,11 @@ public class Student {
 	private int age;
 	private String regDate;
 
-	public Student(long seq, String name, int grade, int age) {
+	public Student(long seq, String name, int grade, int age, LocalDateTime regDate) {
 		this.seq = seq;
 		this.name = name;
 		this.grade = grade;
 		this.age = age;
-		this.regDate = LocalDateTime.now().format(pattern);
+		this.regDate = regDate.format(pattern);
 	}
 }
