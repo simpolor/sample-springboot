@@ -31,37 +31,67 @@ public class QuartzConfig {
     }
 
     @Bean
-    public JobDetail jobOneDetail() {
+    public JobDetail sampleJobDetail() {
         //Set Job data map
         JobDataMap jobDataMap = new JobDataMap();
-        jobDataMap.put("jobName", "demoJobOne");
+        jobDataMap.put("jobName", "sampleJob");
         jobDataMap.put("jobLauncher", jobLauncher);
         jobDataMap.put("jobLocator", jobLocator);
 
         return JobBuilder.newJob(CustomQuartzJob.class)
-                .withIdentity("demoJobOne")
+                .withIdentity("sampleJob")
                 .setJobData(jobDataMap)
                 .storeDurably()
                 .build();
     }
 
     @Bean
-    public JobDetail jobTwoDetail() {
+    public JobDetail shareJobDetail() {
         //Set Job data map
         JobDataMap jobDataMap = new JobDataMap();
-        jobDataMap.put("jobName", "demoJobTwo");
+        jobDataMap.put("jobName", "shareJob");
         jobDataMap.put("jobLauncher", jobLauncher);
         jobDataMap.put("jobLocator", jobLocator);
 
         return JobBuilder.newJob(CustomQuartzJob.class)
-                .withIdentity("demoJobTwo")
+                .withIdentity("shareJob")
                 .setJobData(jobDataMap)
                 .storeDurably()
                 .build();
     }
 
     @Bean
-    public Trigger jobOneTrigger() {
+    public JobDetail sampleFlowJobDetail() {
+        //Set Job data map
+        JobDataMap jobDataMap = new JobDataMap();
+        jobDataMap.put("jobName", "sampleFlowJob");
+        jobDataMap.put("jobLauncher", jobLauncher);
+        jobDataMap.put("jobLocator", jobLocator);
+
+        return JobBuilder.newJob(CustomQuartzJob.class)
+                .withIdentity("sampleFlowJob")
+                .setJobData(jobDataMap)
+                .storeDurably()
+                .build();
+    }
+
+    @Bean
+    public JobDetail itemJobDetail() {
+        //Set Job data map
+        JobDataMap jobDataMap = new JobDataMap();
+        jobDataMap.put("jobName", "itemJob");
+        jobDataMap.put("jobLauncher", jobLauncher);
+        jobDataMap.put("jobLocator", jobLocator);
+
+        return JobBuilder.newJob(CustomQuartzJob.class)
+                .withIdentity("itemJob")
+                .setJobData(jobDataMap)
+                .storeDurably()
+                .build();
+    }
+
+    @Bean
+    public Trigger sampleJobTrigger() {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder
                 .simpleSchedule()
                 .withIntervalInMinutes(1)
@@ -69,23 +99,50 @@ public class QuartzConfig {
 
         return TriggerBuilder
                 .newTrigger()
-                .forJob(jobOneDetail())
-                .withIdentity("jobOneTrigger")
+                .forJob(sampleJobDetail())
+                .withIdentity("sampleJobTrigger")
                 .withSchedule(scheduleBuilder)
                 .build();
     }
 
     @Bean
-    public Trigger jobTwoTrigger() {
+    public Trigger sampleFlowJobTrigger() {
+        CronScheduleBuilder cronSchedule = CronScheduleBuilder.cronSchedule("40 * * * * ?");
+
+        return TriggerBuilder
+                .newTrigger()
+                .forJob(sampleFlowJobDetail())
+                .withIdentity("sampleFlowJobTrigger")
+                .withSchedule(cronSchedule)
+                .build();
+    }
+
+    @Bean
+    public Trigger shareJobTrigger() {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder
                 .simpleSchedule()
-                .withIntervalInSeconds(10)
+                .withIntervalInSeconds(50)
                 .repeatForever();
 
         return TriggerBuilder
                 .newTrigger()
-                .forJob(jobTwoDetail())
-                .withIdentity("jobTwoTrigger")
+                .forJob(shareJobDetail())
+                .withIdentity("shareJobTrigger")
+                .withSchedule(scheduleBuilder)
+                .build();
+    }
+
+    @Bean
+    public Trigger itemJobTrigger() {
+        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder
+                .simpleSchedule()
+                .withIntervalInSeconds(40)
+                .repeatForever();
+
+        return TriggerBuilder
+                .newTrigger()
+                .forJob(itemJobDetail())
+                .withIdentity("itemJobTrigger")
                 .withSchedule(scheduleBuilder)
                 .build();
     }
@@ -93,8 +150,8 @@ public class QuartzConfig {
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
         SchedulerFactoryBean scheduler = new SchedulerFactoryBean();
-        scheduler.setTriggers(jobOneTrigger(), jobTwoTrigger());
-        scheduler.setJobDetails(jobOneDetail(), jobTwoDetail());
+        scheduler.setTriggers(sampleJobTrigger(), sampleFlowJobTrigger(), shareJobTrigger(), itemJobTrigger());
+        scheduler.setJobDetails(sampleJobDetail(), sampleFlowJobDetail(), shareJobDetail(), itemJobDetail());
         scheduler.setQuartzProperties(quartzProperties());
         return scheduler;
     }
