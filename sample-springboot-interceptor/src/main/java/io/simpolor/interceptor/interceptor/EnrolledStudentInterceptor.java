@@ -21,6 +21,7 @@ public class EnrolledStudentInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("Interceptor > preHandle");
 
+        // ... 학교에 등록된 학생인지 인터셉터하는 로직
 
         // HttpSession session = request.getSession();
         // Student student = (Student) session.getAttribute("Student");
