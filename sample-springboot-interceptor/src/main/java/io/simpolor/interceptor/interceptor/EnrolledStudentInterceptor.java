@@ -17,7 +17,7 @@ import javax.servlet.http.*;
 @Component
 public class EnrolledStudentInterceptor implements HandlerInterceptor {
 
-    @Override
+    @Override // 매핑되기 전 처리
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("Interceptor > preHandle");
 
@@ -35,12 +35,12 @@ public class EnrolledStudentInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    @Override
+    @Override // 매핑되고난 후 처리
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
         log.info("Interceptor > postHandle");
     }
 
-    @Override
+    @Override // 모든 작업이 완료된 후 처리
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
         log.info("Interceptor > afterCompletion");
     }
