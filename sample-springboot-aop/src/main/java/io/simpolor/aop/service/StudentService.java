@@ -1,5 +1,6 @@
 package io.simpolor.aop.service;
 
+import io.simpolor.aop.aop.StudentCheck;
 import io.simpolor.aop.domain.Student;
 import io.simpolor.aop.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ public class StudentService {
         return new Student();
     }
 
+    @StudentCheck
     public Student registerStudent(Student student) {
         log.info("Service student.toString() : {}", student.toString());
         long result = studentRepository.insertStudent(student);

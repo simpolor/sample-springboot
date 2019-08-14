@@ -16,6 +16,9 @@ public class StudentAspect {
     @Pointcut("execution(* io.simpolor.aop.service.StudentService.*(..))")
     public void pointcutStudent(){ }
 
+    @Pointcut("* io.simpolor.aop.service.StudentService.registerStudent() &&" + "args(student, ..)")
+    public void pointcutStudent(Student student){ }
+
     @Around("pointcutStudent()")
     */
 
@@ -60,6 +63,14 @@ public class StudentAspect {
             Student student = (Student) retVal;
             student.setSeq(5);
         }
+    }
+
+    @Around("@annotation(StudentCheck)")
+    public Object studentCheck(ProceedingJoinPoint pjp) throws Throwable {
+
+        log.info("Annotaion checked - {} / {}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+
+        return pjp.proceed();
     }
 
     private Student getStudent(ProceedingJoinPoint pjp){
