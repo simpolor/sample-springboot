@@ -19,11 +19,11 @@ public class StudentService {
 
     public List<Student> getStudentList() {
         return studentRepository.findAll();
-
     }
 
     public Student getStudent(long seq) {
-        return studentRepository.findById(seq).orElse(new Student());
+        // return studentRepository.findById(seq).orElse(new Student());
+        return studentRepository.selectStudent(seq);
     }
 
     public Student registerStudent(Student student) {
