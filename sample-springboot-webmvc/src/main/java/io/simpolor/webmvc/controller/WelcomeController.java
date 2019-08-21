@@ -3,18 +3,17 @@ package io.simpolor.webmvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WelcomeController {
 
     @RequestMapping({"/", "/index", "/welcome"})
-    @ResponseBody
-    public String welcome() {
-        return "Springboot Sample WebMvc";
+    public ModelAndView welcome(ModelAndView mav) {
+
+        mav.addObject("message", "Springboot Sample WebMvc");
+        mav.setViewName("welcome");
+        return mav;
     }
 
-    @RequestMapping({"/hello"})
-    public String hello() {
-        return "hello";
-    }
 }

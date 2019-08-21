@@ -14,6 +14,13 @@ public class Student {
 
 	}
 
+	public Student(String name, int grade, int age, List<String> hobby){
+		this.name = name;
+		this.grade = grade;
+		this.age = age;
+		this.hobby = hobby;
+	}
+
 	public Student(long seq, String name, int grade, int age, List<String> hobby){
 		this.seq = seq;
 		this.name = name;
