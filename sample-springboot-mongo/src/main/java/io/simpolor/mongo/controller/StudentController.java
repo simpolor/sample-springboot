@@ -2,6 +2,7 @@ package io.simpolor.mongo.controller;
 
 import io.simpolor.mongo.domain.Student;
 import io.simpolor.mongo.service.StudentService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +25,9 @@ public class StudentController {
 		return studentService.getStudentList();
 	}
 
-	@RequestMapping(value="/{seq}", method=RequestMethod.GET)
-	public Student studentView(@PathVariable long seq) {
-		return studentService.getStudent(seq);
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public Student studentView(@PathVariable String id) {
+		return studentService.getStudent(id);
 	}
 
 	@RequestMapping(value="", method=RequestMethod.POST)
@@ -34,16 +35,16 @@ public class StudentController {
 		return studentService.registerStudent(student);
 	}
 
-	@RequestMapping(value="/{seq}", method=RequestMethod.PUT)
-	public Student studentModify(@PathVariable int seq,
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public Student studentModify(@PathVariable String id,
 							 @RequestBody Student student) {
-		student.setSeq(seq);
+		student.setId(id);
 		return studentService.modifyStudent(student);
 	}
 
-	@RequestMapping(value="/{seq}", method=RequestMethod.DELETE)
-	public long studentDelete(@PathVariable int seq) {
-		return studentService.deleteStudent(seq);
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public String studentDelete(@PathVariable String id) {
+		return studentService.deleteStudent(id);
 	}
 
 

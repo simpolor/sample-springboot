@@ -9,7 +9,7 @@ GET http://127.0.0.1:8090/student/list
 ###
 
 # Student 조회
-GET http://127.0.0.1:8090/student/AWr3CLXHIfBOFUGuoagC
+GET http://127.0.0.1:8090/student/5d90aa5055f77119b0175f5a
 
 ###
 
@@ -27,18 +27,19 @@ Content-Type: application/json
 ###
 
 # Student 수정
-PUT http://127.0.0.1:8090/student/AWr8T3z8IfBOFUGuoagm
+PUT http://127.0.0.1:8090/student/5d90aa7955f77119b0175f5b
 Content-Type: application/json
 
 {
   "name": "박석영",
-  "grade": 2,
+  "grade": 3,
   "age": 18,
   "hobby": ["축구", "프로그래밍"]
 }
+
 ###
 
 # Student 삭제
-DELETE http://127.0.0.1:8090/student/0
+DELETE http://127.0.0.1:8090/student/5d90aa7955f77119b0175f5b
 
 ###
