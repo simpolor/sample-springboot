@@ -1,2 +1,7 @@
 server:
   port: 8091
+
+spring:
+    messages:
+      basename: messages/message
+      encoding: UTF-8
