@@ -2,6 +2,12 @@ server:
   port: 8091
 
 spring:
-    messages:
-      basename: messages/message
-      encoding: UTF-8
+  messages:
+    basename: messages/message
+    encoding: UTF-8
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+
