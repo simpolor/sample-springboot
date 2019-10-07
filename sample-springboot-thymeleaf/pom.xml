@@ -5,14 +5,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
     <artifactId>thymeleaf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>sample-springboot-thymeleaf</name>
+    <name>thymeleaf</name>
     <description>Thymeleaf project for Spring Boot</description>
 
     <properties>
