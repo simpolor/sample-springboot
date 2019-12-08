@@ -25,10 +25,10 @@
         </encoder>
     </appender>
 
-    <!--<appender name="EVENT_QUEUE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="EVENT_QUEUE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./queue/failed-queue.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            &lt;!&ndash; rollover daily &ndash;&gt;
+            <!-- rollover daily -->
             <fileNamePattern>./queue/failed-queue-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -39,7 +39,7 @@
         <encoder>
             <pattern>%date{ISO8601} %-5level %logger{32} - %msg%n</pattern>
         </encoder>
-    </appender>-->
+    </appender>
 
     <logger name="root" level="WARN" />
     <logger name="org.springframework" level="ERROR" />
@@ -51,10 +51,6 @@
     </root>
     <root level="ERROR">
         <appender-ref ref="ROLLING" />
-        <appender-ref ref="STDOUT" />
-    </root>
-
-    <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
 
