@@ -3,6 +3,8 @@ package io.simpolor.logging.controller;
 import io.simpolor.logging.domain.Student;
 import io.simpolor.logging.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
+
+	// private static final Logger eventLog = LoggerFactory.getLogger("event-log");
 
 	@Autowired
 	private StudentService studentService;
@@ -47,6 +51,8 @@ public class StudentController {
 								 @RequestBody Student student) {
 
 		student.setSeq(seq);
+		// eventLog.debug("put event : {}", student);
+
 		return studentService.modify(student);
 	}
 
