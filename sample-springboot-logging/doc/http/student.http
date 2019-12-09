@@ -42,3 +42,15 @@ Content-Type: application/json
 DELETE http://127.0.0.1:8080/student/3
 
 ###
+
+# Student 큐
+POST http://127.0.0.1:8080/student/queue/3
+Content-Type: application/json
+
+{
+  "name": "박석영",
+  "grade": 2,
+  "age": 18,
+  "hobby": ["축구", "프로그래밍"]
+}
+###

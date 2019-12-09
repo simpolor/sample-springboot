@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
+    <!-- springboot 기본 로깅파일 삽입 -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
+    <!-- 콘솔창 로깅 출력 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <encoder>
@@ -9,6 +11,7 @@
         </encoder>
     </appender>
 
+    <!-- 롤링 로깅 출력(파일) -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -16,20 +19,30 @@
             <fileNamePattern>./logs/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>100MB</maxFileSize>
+                <maxFileSize>100MB</maxFileSize><!-- 한 파일당 최대 용량 -->
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>30</maxHistory>
+            <maxHistory>30</maxHistory><!-- 최대 보관 기간 -->
         </rollingPolicy>
         <encoder>
             <pattern>%date{ISO8601} %-5level %logger{32} - %msg%n</pattern>
+            <!-- pattern
+                %d{yyyy-MM-dd HH:mm:ss} : 년월일 시분초
+                %data{ISO8601} : 날짜 출력양식
+                %thread : 쓰레드명
+                %-5level : 로그 레벨, -5는 출력 고정폭 값
+                %logger{length} : 로거 이름, {length}는 자리수
+                %msg : 로거 메세지, $message의 alias
+                %n : 줄바꿈
+                %highlight : log level별로 color가 다르게 출력
+            -->
         </encoder>
     </appender>
 
     <appender name="EVENT_QUEUE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./queue/failed-queue.log</file>
+        <file>./queue/event-queue.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>./queue/failed-queue-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./queue/event-queue-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
@@ -37,33 +50,55 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%date{ISO8601} %-5level %logger{32} - %msg%n</pattern>
+            <pattern>%date{ISO8601} - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
+        </layout>
+        <webhookUri>https://hooks.slack.com/services/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</webhookUri>
+        <username>sample-springboot-logger</username>
+        <iconEmoji>:stuck_out_tongue_winking_eye:</iconEmoji>
+        <colorCoding>true</colorCoding>
+    </appender>
+
+
+    <!--다른 로깅 파일을 삽입 -->
+    <!-- include resource="logback-defaults.xml"/ -->
+
+    <!-- 프로퍼티를 설정하여 사용 -->
+    <!-- ${LOG_LEVEL}을 사용할 경우 application.properties에서 logger.log.level=INFO를 설정을 사용-->
+    <!-- property name="ROOT_LOG_LEVEL" value="INFO"/ -->
+
+    <!-- name은 package 혹은 logger name을 사용 -->
     <logger name="root" level="WARN" />
     <logger name="org.springframework" level="ERROR" />
     <logger name="io.simpolor" level="DEBUG" />
-    <!--<logger name="event-log" level="EVENT" />-->
 
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-    </root>
-    <root level="ERROR">
-        <appender-ref ref="ROLLING" />
-        <appender-ref ref="STDOUT" />
-    </root>
-
-    <!--<root level="EVENT">
+    <!-- level 지정과, appender-ref를 할 경우 2가지 방식으로 출력이 가능 -->
+    <logger name="event-log" level="DEBUG">
         <appender-ref ref="EVENT_QUEUE" />
-    </root>-->
+        <appender-ref ref="SLACK" />
+    </logger>
 
-    <!--<springProfile name="!live">
-        <logger name="io.simpolor" level="debug" />
-        <root level="debug">
-            <appender-ref ref="rolling" />
+    <!-- 환경별로 로깅 레벨을 설정이 가능 -->
+    <springProfile name="!live">
+        <logger name="io.simpolor" level="DEBUG" />
+        <root level="DEBUG">
             <appender-ref ref="STDOUT" />
         </root>
-    </springProfile>-->
+        <root level="ERROR">
+            <appender-ref ref="ROLLING"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="live">
+        <logger name="io.simpolor" level="ERROR" />
+        <root level="ERROR">
+            <appender-ref ref="ROLLING" />
+        </root>
+    </springProfile>
 
 </configuration>
