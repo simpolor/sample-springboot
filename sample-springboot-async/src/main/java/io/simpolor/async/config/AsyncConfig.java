@@ -36,4 +36,10 @@ public class AsyncConfig extends AsyncConfigurerSupport {
 
 		return executor;
 	}
+
+	/***
+	 * setCorePoolSize : 기본 쓰레드 사이즈
+	 * setMaxPoolSize : 최대 쓰레드 사이즈
+	 * setQueueCapacity : Max 쓰레드가 동작하는 경우 대기하는 queue 사이즈
+	 */
 }
