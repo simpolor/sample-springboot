@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- 환경 설정 -->
+    <property name="LOG_DIR" value="${user.home}/logs/app" />
+    <property name="LOG_PATH" value="${LOG_DIR}/app.log"/>
+
     <!-- springboot 기본 로깅파일 삽입 -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- include를 통해 환경별로 로깅 파일을 삽입해도 좋은 방법 -->
+    <!-- <include resource="logback.${profile}.xml"/> -->
 
     <!-- 콘솔창 로깅 출력 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -13,7 +21,12 @@
 
     <!-- 롤링 로깅 출력(파일) -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- 파일 경로 -->
         <file>./logs/application.log</file>
+        <!-- <file>${LOG_PATH}</file> -->
+
+        <!-- Rolling 정책 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
             <fileNamePattern>./logs/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
@@ -23,6 +36,8 @@
             </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>30</maxHistory><!-- 최대 보관 기간 -->
         </rollingPolicy>
+
+        <!-- 출력 패턴 -->
         <encoder>
             <pattern>%date{ISO8601} %-5level %logger{32} - %msg%n</pattern>
             <!-- pattern
@@ -34,6 +49,18 @@
                 %msg : 로거 메세지, $message의 alias
                 %n : 줄바꿈
                 %highlight : log level별로 color가 다르게 출력
+                ${PID:-} : 프로세스 아이디
+                %d : 로그 기록시간
+                %p : 로깅 레벨
+                %F : 로깅이 발생한 프로그램 파일명
+                %M : 로깅일 발생한 메소드의 이름
+                %l : 로깅이 발생한 호출지의 정보
+                %L : 로깅이 발생한 호출지의 라인 수
+                %t : 쓰레드 명
+                %c : 로깅이 발생한 카테고리
+                %C : 로깅이 발생한 클래스 명
+                %m : 로그 메시지
+                %r : 애플리케이션 시작 이후부터 로깅이 발생한 시점까지의 시간
             -->
         </encoder>
     </appender>

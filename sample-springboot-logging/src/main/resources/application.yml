@@ -3,3 +3,6 @@
 #    root: WARN
 #    org.springframework: ERROR
 #    io.simpolor: DEBUG
+#  config: classpath:logback-spring.xml
+#  file:
+#  path:
