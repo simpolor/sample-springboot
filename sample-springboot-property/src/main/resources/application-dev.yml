@@ -1,0 +1,6 @@
+spring:
+  profiles: dev
+
+application:
+  name: dev-simpolor
+  email: simpolor@gmail.com

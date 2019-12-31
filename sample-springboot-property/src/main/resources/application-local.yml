@@ -1,0 +1,6 @@
+spring:
+  profiles: local
+
+application:
+  name: local-simpolor
+  email: simpolor@gmail.com
