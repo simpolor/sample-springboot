@@ -1,17 +1,23 @@
 package io.simpolor.property.config;
 
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.boot.context.properties.*;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.*;
 
-// @Getter
-// @Component
-// @PropertySource("classpath:application.yml")
-// @ConfigurationProperties("app")
+@Getter
+@Configuration
 public class PropertyConfig {
 
-    private String name;
+    @Bean
+    @ConfigurationProperties(prefix = "application")
+    public Application application() {
+        return new Application();
+    }
 
-    private String email;
+    @Data
+    public class Application {
+        private String name;
+        private String email;
+    }
 }
