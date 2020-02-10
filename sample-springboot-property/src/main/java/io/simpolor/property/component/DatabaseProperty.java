@@ -9,6 +9,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+/***
+ * @ConfigurationProperties를 사용하기 위해서는,
+ * Mavne에서 spring-boot-configuration-processor 추가가 필요
+ */
 @Getter
 @Component
 @PropertySource("classpath:database.yml")
