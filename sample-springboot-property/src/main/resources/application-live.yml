@@ -1,7 +1,7 @@
 spring:
   profiles:
-    active: local
+    active: live
 
 application:
-  name: local-simpolor
+  name: live-simpolor
   email: simpolor@gmail.com

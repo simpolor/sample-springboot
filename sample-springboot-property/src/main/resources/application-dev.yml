@@ -1,5 +1,6 @@
 spring:
-  profiles: dev
+  profiles:
+    active: dev
 
 application:
   name: dev-simpolor
