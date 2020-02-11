@@ -29,7 +29,7 @@ public class WelcomeController {
     }
 
     @ResponseBody
-    @RequestMapping({"/test"})
+    @RequestMapping({"/property"})
     public String test() {
 
         log.info("applicationProperty.name :{}", applicationProperty.getName());

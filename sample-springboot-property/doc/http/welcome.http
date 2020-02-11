@@ -1,4 +1,4 @@
 # 전체 카운트
-GET http://127.0.0.1:8080/test
+GET http://127.0.0.1:8080/property
 
 ###
