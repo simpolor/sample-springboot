@@ -1,0 +1,29 @@
+# 전체 카운트
+GET http://127.0.0.1:8080/student/totalcount
+
+###
+
+# 전체 카운트
+GET http://127.0.0.1:8080/student/totalcount?p=API
+
+###
+
+# 전체 카운트
+GET http://127.0.0.1:8080/student/totalcount?p=COMMON
+
+###
+
+# Student 리스트
+GET http://127.0.0.1:8080/student/list
+
+###
+
+# Student 리스트
+GET http://127.0.0.1:8080/student/list?p=API
+
+###
+
+# Student 리스트
+GET http://127.0.0.1:8080/student/list?p=COMMON
+
+###
