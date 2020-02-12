@@ -1,7 +1,7 @@
 package io.simpolor.event.controller;
 
 import io.simpolor.event.domain.Student;
-import io.simpolor.event.domain.StudentEvent;
+import io.simpolor.event.listener.event.StudentEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;

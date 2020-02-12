@@ -1,4 +1,4 @@
-package io.simpolor.event.domain;
+package io.simpolor.event.listener.event;
 
 import lombok.Value;
 

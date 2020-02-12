@@ -1,6 +1,6 @@
 package io.simpolor.event.listener;
 
-import io.simpolor.event.domain.StudentEvent;
+import io.simpolor.event.listener.event.StudentEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
