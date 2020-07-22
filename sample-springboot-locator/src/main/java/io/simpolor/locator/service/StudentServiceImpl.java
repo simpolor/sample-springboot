@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class StudnetServiceImpl implements StudentServcie {
+public class StudentServiceImpl implements StudentServcie {
 
     @Override
     public boolean supports(String s){
