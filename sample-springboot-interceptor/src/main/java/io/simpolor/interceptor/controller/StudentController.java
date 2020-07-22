@@ -15,7 +15,7 @@ public class StudentController {
 	private StudentService studentService;
 
 	@RequestMapping(value="/totalcount", method=RequestMethod.GET)
-	public int studentTotalCount() {
+	public long studentTotalCount() {
 		return studentService.getStudentTotalCount();
 	}
 
@@ -35,7 +35,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="/{seq}", method=RequestMethod.PUT)
-	public Student studentModify(@PathVariable int seq,
+	public Student studentModify(@PathVariable long seq,
 							 @RequestBody Student student) {
 		student.setSeq(seq);
 		return studentService.modifyStudent(student);

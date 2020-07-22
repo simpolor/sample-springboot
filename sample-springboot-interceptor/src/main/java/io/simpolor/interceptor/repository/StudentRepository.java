@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public class StudentRepository {
 
-    public int selectStudentTotalCount(){
+    public long selectStudentTotalCount(){
         return 3;
     }
 
@@ -28,11 +28,11 @@ public class StudentRepository {
         return 3;
     }
 
-    public int updateStudent(Student student){
+    public long updateStudent(Student student){
         return 1;
     }
 
-    public int deleteStudent(long seq){
+    public long deleteStudent(long seq){
         return 1;
     }
 }
