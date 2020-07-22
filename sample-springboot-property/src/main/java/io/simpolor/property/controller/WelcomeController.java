@@ -25,7 +25,7 @@ public class WelcomeController {
     @ResponseBody
     @RequestMapping({"/", "/index", "/welcome"})
     public String welcome() {
-        return "Springboot Sample Mybatis";
+        return "Springboot Sample Property";
     }
 
     @ResponseBody
