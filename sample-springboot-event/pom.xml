@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
-    <artifactId>sample-springboot-event</artifactId>
+    <artifactId>event</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>sample-springboot-event</name>
