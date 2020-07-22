@@ -13,7 +13,7 @@ public class QueueController {
 
 	private static final Logger eventLog = LoggerFactory.getLogger("event-log");
 
-	@PostMapping(value="/queue/{seq}")
+	@PutMapping(value="/queue/{seq}")
 	public Student studentModify(@PathVariable int seq,
 								 @RequestBody Student student) {
 
