@@ -17,7 +17,7 @@ public class StudentController {
 	private StudentService studentService;
 
 	@RequestMapping(value="/totalcount", method=RequestMethod.GET)
-	public int studentTotalCount() {
+	public long studentTotalCount() {
 		return studentService.getStudentTotalCount();
 	}
 

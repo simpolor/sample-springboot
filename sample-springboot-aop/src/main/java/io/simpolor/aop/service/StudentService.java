@@ -16,7 +16,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public int getStudentTotalCount() {
+    public long getStudentTotalCount() {
         return studentRepository.selectStudentTotalCount();
     }
 
