@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: test
+
+application:
+  isWelcome: false
