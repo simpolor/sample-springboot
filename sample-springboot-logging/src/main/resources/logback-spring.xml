@@ -8,6 +8,16 @@
     <!-- springboot 기본 로깅파일 삽입 -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
+    <!-- 사용자가 생성한 logback-default, logback-slack-appender.xml 파일 -->
+    <!--<include resource="logback-defaults.xml"/>
+    <include resource="logback-slack-appender.xml"/>-->
+
+    <!-- console-appender 사용시 CONSOLE로 출력 -->
+    <!--<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+
+    <!--<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>-->
+
     <!-- include를 통해 환경별로 로깅 파일을 삽입해도 좋은 방법 -->
     <!-- <include resource="logback.${profile}.xml"/> -->
 
@@ -101,8 +111,12 @@
 
     <!-- name은 package 혹은 logger name을 사용 -->
     <logger name="root" level="WARN" />
-    <logger name="org.springframework" level="ERROR" />
+    <logger name="org.springframework" level="DEBUG" />
+    <!--<logger name="org.springframework" level="ERROR" />-->
     <logger name="io.simpolor" level="DEBUG" />
+
+    <!-- 모듈 이름 -->
+    <!--<logger name="logging" level="DEBUG"/>-->
 
     <!-- level 지정과, appender-ref를 할 경우 2가지 방식으로 출력이 가능 -->
     <logger name="event-log" level="DEBUG">
@@ -127,5 +141,9 @@
             <appender-ref ref="ROLLING" />
         </root>
     </springProfile>
+
+    <!-- 아래와 같은 조건을 사용 가능 -->
+    <!--<springProfile name="!dev &amp; !qa &amp; !qa2"></springProfile>-->
+    <!--<springProfile name="dev, qa, qa2"></springProfile>-->
 
 </configuration>

@@ -5,4 +5,10 @@
 #    io.simpolor: DEBUG
 #  config: classpath:logback-spring.xml
 #  file:
+#    max-size: 10MB
+#    total-size-cap: 0
+#    max-history: 7
 #  path:
+#  pattern:
+#    file: "%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:%5p} ${PID:-} --- [%-15.15t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+#    console: "%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:%5p} ${PID:-} --- [%-15.15t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

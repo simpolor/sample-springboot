@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+
+    <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
+        <webhookUri></webhookUri>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[${spring.profiles.active}/${spring.application.name}] %logger{32} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="APP-LIFECYCLE-SLACK" class="com.github.maricn.logback.SlackAppender">
+        <webhookUri></webhookUri>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[${spring.profiles.active}/${spring.application.name}] %logger{32} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+</included>
