@@ -1,3 +1,8 @@
+# 로그
+GET http://127.0.0.1:8080/student/log
+
+###
+
 # 전체 카운트
 GET http://127.0.0.1:8080/student/totalcount
 
@@ -44,7 +49,7 @@ DELETE http://127.0.0.1:8080/student/3
 ###
 
 # Student 큐
-POST http://127.0.0.1:8080/student/queue/3
+PUT http://127.0.0.1:8080/student/queue/1
 Content-Type: application/json
 
 {

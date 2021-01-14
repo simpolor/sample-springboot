@@ -1,12 +1,14 @@
 package io.simpolor.logging.service;
 
 import io.simpolor.logging.domain.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Service
 public class StudentService {
 
@@ -26,6 +28,10 @@ public class StudentService {
 
     public Student get(long seq){
 
+        if(seq != 1L){
+            log.error("Notfound seq : {}", seq);
+        }
+
         return Student.builder()
                 .seq(seq)
                 .name("홍길동")
@@ -37,7 +43,9 @@ public class StudentService {
 
     public Student register(Student student){
 
-        student.setSeq(1);
+        if("simpolor".equals(student.getName())){
+            log.error("Already name : {}", student.getName());
+        }
 
         return Student.builder()
                 .seq(1)
@@ -50,10 +58,18 @@ public class StudentService {
 
     public Student modify(Student student){
 
+        if(student.getSeq() != 1L){
+            log.error("Notfound seq : {}", student.getSeq());
+        }
+
         return student;
     }
 
     public long delete(long seq){
+
+        if(seq != 1L){
+            log.error("Notfound seq : {}", seq);
+        }
 
         return seq;
     }

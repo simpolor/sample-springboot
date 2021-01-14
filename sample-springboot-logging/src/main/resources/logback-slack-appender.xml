@@ -3,20 +3,17 @@
 <included>
 
     <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
-        <webhookUri></webhookUri>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>[${spring.profiles.active}/${spring.application.name}] %logger{32} - %msg%n</pattern>
+            <pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
+            <!-- <pattern>[${spring.profiles.active}/${spring.application.name}] %logger{32} - %msg%n</pattern> -->
         </layout>
+        <webhookUri>https://hooks.slack.com/services/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</webhookUri>
+        <username>sample-springboot-logger</username>
+        <iconEmoji>:stuck_out_tongue_winking_eye:</iconEmoji>
+        <colorCoding>true</colorCoding>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>WARN</level>
-        </filter>
-    </appender>
-
-    <appender name="APP-LIFECYCLE-SLACK" class="com.github.maricn.logback.SlackAppender">
-        <webhookUri></webhookUri>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>[${spring.profiles.active}/${spring.application.name}] %logger{32} - %msg%n</pattern>
-        </layout>
+        </filter><!-- appender 안에서 filter에 level 지정이 가능-->
     </appender>
 
 </included>

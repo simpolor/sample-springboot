@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+
+    <!-- 롤링 로깅 출력(파일) -->
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- 파일 경로 -->
+        <!--<file>./logs/application.log</file>-->
+         <file>${LOG_FILE}</file>
+
+        <!-- Rolling 정책 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>./logs/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize><!-- 한 파일당 최대 용량 -->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory><!-- 최대 보관 기간 -->
+        </rollingPolicy>
+
+        <!-- 출력 패턴 -->
+        <encoder>
+            <pattern>%date{ISO8601} %-5level %logger{32} - %msg%n</pattern>
+            <!-- pattern
+                %d{yyyy-MM-dd HH:mm:ss} : 년월일 시분초
+                %data{ISO8601} : 날짜 출력양식
+                %thread : 쓰레드명
+                %-5level : 로그 레벨, -5는 출력 고정폭 값
+                %logger{length} : 로거 이름, {length}는 자리수
+                %msg : 로거 메세지, $message의 alias
+                %n : 줄바꿈
+                %highlight : log level별로 color가 다르게 출력
+                ${PID:-} : 프로세스 아이디
+                %d : 로그 기록시간
+                %p : 로깅 레벨
+                %F : 로깅이 발생한 프로그램 파일명
+                %M : 로깅일 발생한 메소드의 이름
+                %l : 로깅이 발생한 호출지의 정보
+                %L : 로깅이 발생한 호출지의 라인 수
+                %t : 쓰레드 명
+                %c : 로깅이 발생한 카테고리
+                %C : 로깅이 발생한 클래스 명
+                %m : 로그 메시지
+                %r : 애플리케이션 시작 이후부터 로깅이 발생한 시점까지의 시간
+            -->
+        </encoder>
+    </appender>
+
+    <appender name="EVENT_QUEUE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./queue/event-queue.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>./queue/event-queue-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{ISO8601} - %msg%n</pattern>
+        </encoder>
+    </appender>
+</included>
