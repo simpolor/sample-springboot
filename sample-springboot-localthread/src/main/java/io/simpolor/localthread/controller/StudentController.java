@@ -26,7 +26,13 @@ public class StudentController {
 
 		ThreadLocalContext.threadLocal.set("sample");
 
-		return studentService.getAll();
+		List<StudentDto> studentDtos = studentService.getAll();
+
+		// ThreadLocal을 사용한 후 직접 remove를 호출해야 함
+		// ( 그렇지 않을 경우 재사용되는 Thread가 올바르지 않은 데이터를 참조할 수 있음 )
+		ThreadLocalContext.threadLocal.remove();
+
+		return studentDtos;
 	}
 
 	@GetMapping(value="/{seq}")
